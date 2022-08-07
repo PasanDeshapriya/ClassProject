@@ -6,7 +6,7 @@ public class Passanger {
 
     //assigning the variables
 
-
+//setters
     public void setFirstName(String firstName) {
         this.FirstName = firstName;
     }
@@ -23,7 +23,7 @@ public class Passanger {
         this.NumOfLiters = NumOfLiters;
     }
 
-
+//getters
     public String getFirstName() {
         return FirstName;
     }

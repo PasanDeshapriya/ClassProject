@@ -1,0 +1,78 @@
+
+--------------------------Queue 0----------------------
+
+Name: pasan asdsa, Vehicle number: 
+Vehicle number: 1, Number of liters: 1
+
+queue 0 row 1 is empty
+
+queue 0 row 2 is empty
+
+queue 0 row 3 is empty
+
+queue 0 row 4 is empty
+
+queue 0 row 5 is empty
+
+
+--------------------------Queue 1----------------------
+
+Name: chiran a, Vehicle number: 
+Vehicle number: 1, Number of liters: 1
+
+queue 1 row 1 is empty
+
+queue 1 row 2 is empty
+
+queue 1 row 3 is empty
+
+queue 1 row 4 is empty
+
+queue 1 row 5 is empty
+
+
+--------------------------Queue 2----------------------
+
+queue 2 row 0 is empty
+
+queue 2 row 1 is empty
+
+queue 2 row 2 is empty
+
+queue 2 row 3 is empty
+
+queue 2 row 4 is empty
+
+queue 2 row 5 is empty
+
+
+--------------------------Queue 3----------------------
+
+queue 3 row 0 is empty
+
+queue 3 row 1 is empty
+
+queue 3 row 2 is empty
+
+queue 3 row 3 is empty
+
+queue 3 row 4 is empty
+
+queue 3 row 5 is empty
+
+
+--------------------------Queue 4----------------------
+
+queue 4 row 0 is empty
+
+queue 4 row 1 is empty
+
+queue 4 row 2 is empty
+
+queue 4 row 3 is empty
+
+queue 4 row 4 is empty
+
+queue 4 row 5 is empty
+
+Waiting list

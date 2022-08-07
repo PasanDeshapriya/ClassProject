@@ -97,15 +97,12 @@ public class Main {
             System.out.println("\n--------------------------Queue "+out+"----------------------\n");
             for (int in = 0; in < 6; in++) {
                 if (queue[out].passangers[in].getFirstName() == null) {
-                    System.out.println(queue[out].passangers[in].getFirstName());
-                    System.out.println( queue[out].passangers[in].getSecondName());
-                    System.out.println(queue[out].passangers[in].getVehicleNum());
-                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
+                    System.out.println(in+") Empty\n");
                 }else {
-                    System.out.println(queue[out].passangers[in].getFirstName());
-                    System.out.println( queue[out].passangers[in].getSecondName());
-                    System.out.println(queue[out].passangers[in].getVehicleNum());
-                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
+                    System.out.println(in+") :"+queue[out].passangers[in].getFirstName());
+                    System.out.println(in+") :"+queue[out].passangers[in].getSecondName());
+                    System.out.println(in+") :"+queue[out].passangers[in].getVehicleNum());
+                    System.out.println(in+") :"+queue[out].passangers[in].getNumOfLiters()+ "\n");
                 }
             }
 
@@ -117,10 +114,7 @@ public class Main {
             System.out.println("\n--------------------------Queue "+out+"----------------------\n");
             for (int in = 0; in < 6; in++) {
                 if (queue[out].passangers[in].getFirstName() == null) {
-                    System.out.println(queue[out].passangers[in].getFirstName());
-                    System.out.println( queue[out].passangers[in].getSecondName());
-                    System.out.println(queue[out].passangers[in].getVehicleNum());
-                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
+                    System.out.println(in+") Empty\n");
                 }
 
             }
@@ -129,16 +123,61 @@ public class Main {
     }
 
     public static void ACQ(FuelQueue[] queue) {
+//sort low will find the pump queue with the lowest no of customers
         SortLow(queue);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter First name ");
-        String FirstName = scanner.nextLine();
+        String FirstName;
+//this is validation if the user didn't input  it won't let the  user from going into the next input until the user enters an input
+
+        do{
+            if(scanner.hasNext()){
+                FirstName = scanner.next();
+                break;
+            }else{
+                scanner.next();
+            }
+        }while(true);
+
         System.out.println("Enter Second name ");
-        String SecondName = scanner.nextLine();
+        String SecondName;
+        do{
+            if(scanner.hasNext()){
+                SecondName = scanner.next();
+                break;
+            }else{
+                scanner.next();
+            }
+        }while(true);
+
         System.out.println("Enter Vehicle number ");
-        String Vehicle = scanner.nextLine();
-        System.out.println("enter Number of liters");
-        int liters = scanner.nextInt();
+        String Vehicle;
+        do{
+            if(scanner.hasNext()){
+                Vehicle = scanner.next();
+                break;
+
+            }else{
+                scanner.next();
+
+            }
+        }while(true);
+
+        System.out.println("Enter Number of liters");
+        int liters;
+        do{
+            String num = scanner.next();
+            try
+            {
+                liters=Integer.parseInt(num);
+
+                break;
+            }
+            catch (NumberFormatException e)
+            {
+                scanner.next();
+            }
+        }while(true);
 
 
         if (queue[4].passangers[5].getFirstName() != null) {
@@ -147,6 +186,9 @@ public class Main {
             waitingListSecondName.add(SecondName);
             waitingListVehicleNo.add(Vehicle);
             waitingListNumOfLiters.add(liters);
+            int size=waitingListFirstName.size()-1;
+            System.out.println("a customer called "+waitingListFirstName.get(size)+" "+waitingListSecondName.get(size)+ " is added to waiting list in "+size+" position.");
+
 
         } else if (count1 == low[0]) {
             for (int i = 0; i < 6; i++) {
@@ -234,13 +276,15 @@ public class Main {
             }
         }
     }
-
+//count is used to keep track of the length of each length of each queue
     public static int count1 = 0;
     public static int count2 = 0;
     public static int count3 = 0;
     public static int count4 = 0;
     public static int count5 = 0;
     public static int low[] = new int[5];
+
+    //sort low makes the low array store the shortest length queue in the first 0 position of the low array
 
     public static void SortLow(FuelQueue[] queue) {
         int count = 0;
@@ -281,7 +325,7 @@ public class Main {
 
         }
     }
-
+//remove customer from specific loacation
     public static void RCQ(FuelQueue[] queue) {
         int out = 0;
         int in = 0;
@@ -305,6 +349,7 @@ public class Main {
             }else if(out==4){
                 count5-=1;
             }
+            //this is done to shift the array when a customer is removed
             queue[out].passangers[in].setFirstName(null);
             queue[out].passangers[in].setSecondName(null);
             queue[out].passangers[in].setVehicleNum(null);
@@ -315,6 +360,7 @@ public class Main {
                 queue[out].passangers[i].setVehicleNum(queue[out].passangers[i + 1].getVehicleNum());
                 queue[out].passangers[i].setNumofLiters(queue[out].passangers[i + 1].getNumOfLiters());
             }
+            //the last one is done manually coz otherwise the array out of bound error will take place
             queue[out].passangers[5].setFirstName(null);
             queue[out].passangers[5].setSecondName(null);
             queue[out].passangers[5].setVehicleNum(null);
@@ -365,6 +411,7 @@ public class Main {
                     queue[out].passangers[5].setVehicleNum(null);
                     queue[out].passangers[5].setNumofLiters(0);
                 }
+                //when remove from the array list the next values will replace it  so that's why 0 is used always
                 if(waitingListFirstName.size()!=0){
                     for(int i=0;i<6;i++) {
                         if (queue[out].passangers[i].getFirstName() == null) {
@@ -431,6 +478,7 @@ public class Main {
                 if(queue2[i][0] == null || queue2[j][0] ==null ) {
 
                 }else{
+                    //compare to send a positive number if the letter compared to is greater
                     if (Arrays.toString(queue2[i]).compareTo(Arrays.toString(queue2[j])) > 0) {
                         temp = queue2[i];
                         queue2[i] = queue2[j];
@@ -513,18 +561,18 @@ public class Main {
         try {
             File txt = new File("Data.txt");
             boolean x = (txt.createNewFile());
-
+//data is written into a file called data.txt
                 PrintWriter writeFile = new PrintWriter(txt);
                 for (out = 0; out < 5; out++) {
                     writeFile.println("\n--------------------------Queue "+out+"----------------------\n");
                     for (in = 0; in < 6; in++) {
                         if (queue[out].passangers[in].getFirstName() == null) {
-                            writeFile.println("queue " + out + " row "+in+" is empty\n");
+                            writeFile.println(in+") Empty\n");
                         }else {
-                            writeFile.println(queue[out].passangers[in].getFirstName());
-                            writeFile.println( queue[out].passangers[in].getSecondName());
-                            writeFile.println(queue[out].passangers[in].getVehicleNum());
-                            writeFile.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
+                            System.out.println(in+") :"+queue[out].passangers[in].getFirstName());
+                            System.out.println(in+") "+queue[out].passangers[in].getSecondName());
+                            System.out.println(in+") "+queue[out].passangers[in].getVehicleNum());
+                            System.out.println(in+") "+queue[out].passangers[in].getNumOfLiters()+ "\n");
                         }
                     }
                 }
@@ -550,6 +598,7 @@ public class Main {
         }
     }
 
+    //data is loaded from the queue
     public static void LPD(FuelQueue[] queue) {
         System.out.println("Load Program Data from file.");
 
