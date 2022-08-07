@@ -97,11 +97,15 @@ public class Main {
             System.out.println("\n--------------------------Queue "+out+"----------------------\n");
             for (int in = 0; in < 6; in++) {
                 if (queue[out].passangers[in].getFirstName() == null) {
-                    System.out.println("queue " + out + " row "+in+" is empty\n");
+                    System.out.println(queue[out].passangers[in].getFirstName());
+                    System.out.println( queue[out].passangers[in].getSecondName());
+                    System.out.println(queue[out].passangers[in].getVehicleNum());
+                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
                 }else {
-                    System.out.println("Name: " + queue[out].passangers[in].getFirstName() + " " + queue[out].passangers[in].getSecondName() + ", Vehicle number: ");
-                    System.out.println("Vehicle number: " + queue[out].passangers[in].getVehicleNum() + ", Number of liters: " + queue[out].passangers[in].getNumOfLiters() + "\n");
-
+                    System.out.println(queue[out].passangers[in].getFirstName());
+                    System.out.println( queue[out].passangers[in].getSecondName());
+                    System.out.println(queue[out].passangers[in].getVehicleNum());
+                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
                 }
             }
 
@@ -113,7 +117,10 @@ public class Main {
             System.out.println("\n--------------------------Queue "+out+"----------------------\n");
             for (int in = 0; in < 6; in++) {
                 if (queue[out].passangers[in].getFirstName() == null) {
-                    System.out.println("queue " + out + " row "+in+" is empty\n");
+                    System.out.println(queue[out].passangers[in].getFirstName());
+                    System.out.println( queue[out].passangers[in].getSecondName());
+                    System.out.println(queue[out].passangers[in].getVehicleNum());
+                    System.out.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
                 }
 
             }
@@ -358,27 +365,18 @@ public class Main {
                     queue[out].passangers[5].setVehicleNum(null);
                     queue[out].passangers[5].setNumofLiters(0);
                 }
-                if(waitingListFirstName.size()>0){
-                    for (int inLoop =0; inLoop < 6; inLoop++) {
-                        if (queue[out].passangers[inLoop] == null) {
-                            try {
-                                if (waitingListFirstName.get(0) != null) {
-                                    queue[out].passangers[inLoop].setFirstName(waitingListFirstName.get(0));
-                                    waitingListFirstName.remove(0);
-
-                                    queue[out].passangers[inLoop].setSecondName(waitingListSecondName.get(0));
-                                    waitingListSecondName.remove(0);
-
-                                    queue[out].passangers[inLoop].setVehicleNum(waitingListVehicleNo.get(0));
-                                    waitingListVehicleNo.remove(0);
-
-                                    queue[out].passangers[inLoop].setNumofLiters(waitingListNumOfLiters.get(0));
-                                    waitingListNumOfLiters.remove(0);
-                                    break;
-                                }
-                            } catch (IndexOutOfBoundsException nfe) {
-                                break;
-                            }
+                if(waitingListFirstName.size()!=0){
+                    for(int i=0;i<6;i++) {
+                        if (queue[out].passangers[i].getFirstName() == null) {
+                            queue[out].passangers[i].setFirstName(waitingListFirstName.get(0));
+                            queue[out].passangers[i].setSecondName(waitingListSecondName.get(0));
+                            queue[out].passangers[i].setVehicleNum(waitingListVehicleNo.get(0));
+                            queue[out].passangers[i].setNumofLiters(waitingListNumOfLiters.get(0));
+                            waitingListFirstName.remove(0);
+                            waitingListSecondName.remove(0);
+                            waitingListVehicleNo.remove(0);
+                            waitingListNumOfLiters.remove(0);
+                            break;
                         }
                     }
                 }
@@ -405,9 +403,9 @@ public class Main {
         System.out.println("\nQueues_0\n");
         for (int i = 0; i < 6; i++) {
             for (int j = i + 1; j < 6; j++) {
-                if(queue1[i][0] != null && queue1[j][0] !=null ){
+                if(queue1[i][0] == null || queue1[j][0] ==null ) {
 
-
+                }else{
                     if (Arrays.toString(queue1[i]).compareTo(Arrays.toString(queue1[j])) > 0) {
                         temp = queue1[i];
                         queue1[i] = queue1[j];
@@ -418,7 +416,9 @@ public class Main {
 
         }
         for (int i=0; i<6; i++) {
-            System.out.println(Arrays.toString(queue1[i]));
+            if(Arrays.toString(queue1[i])!=null) {
+                System.out.println(Arrays.toString(queue1[i]));
+            }
         }
 
         System.out.println("\nQueues_1\n");
@@ -428,9 +428,9 @@ public class Main {
 
         for (int i = 0; i < 6; i++) {
             for (int j = i + 1; j < 6; j++) {
-                if(queue2[i][0] != null && queue2[j][0] !=null ){
+                if(queue2[i][0] == null || queue2[j][0] ==null ) {
 
-
+                }else{
                     if (Arrays.toString(queue2[i]).compareTo(Arrays.toString(queue2[j])) > 0) {
                         temp = queue2[i];
                         queue2[i] = queue2[j];
@@ -446,9 +446,9 @@ public class Main {
         System.out.println("\nQueues_2\n");
         for (int i = 0; i < 6; i++) {
             for (int j = i + 1; j < 6; j++){
-                if(queue3[i][0] != null && queue3[j][0] !=null ){
+                if(queue3[i][0] == null || queue3[j][0] ==null ) {
 
-
+                }else{
                     if (Arrays.toString(queue3[i]).compareTo(Arrays.toString(queue3[j])) > 0) {
                         temp = queue3[i];
                         queue3[i] = queue3[j];
@@ -464,9 +464,9 @@ public class Main {
         System.out.println("\nQueues_3\n");
         for (int i = 0; i < 6; i++) {
             for (int j = i + 1; j < 6; j++) {
-                if(queue4[i][0] != null && queue4[j][0] !=null ){
+                if(queue4[i][0] == null || queue4[j][0] ==null ) {
 
-
+                }else{
                     if (Arrays.toString(queue4[i]).compareTo(Arrays.toString(queue4[j])) > 0) {
                         temp = queue4[i];
                         queue4[i] = queue4[j];
@@ -482,9 +482,9 @@ public class Main {
         System.out.println("\nQueues_4\n");
         for (int i = 0; i < 6; i++) {
             for (int j = i + 1; j < 6; j++) {
-                if(queue5[i][0] != null && queue5[j][0] !=null ){
+                if(queue5[i][0] == null || queue5[j][0] ==null ) {
 
-
+                }else{
                     if (Arrays.toString(queue5[i]).compareTo(Arrays.toString(queue5[j])) > 0) {
                         temp = queue5[i];
                         queue5[i] = queue5[j];
@@ -513,9 +513,7 @@ public class Main {
         try {
             File txt = new File("Data.txt");
             boolean x = (txt.createNewFile());
-            if (!x) {
-                System.out.println("You have already created txt file using this name!");
-            } else {
+
                 PrintWriter writeFile = new PrintWriter(txt);
                 for (out = 0; out < 5; out++) {
                     writeFile.println("\n--------------------------Queue "+out+"----------------------\n");
@@ -523,9 +521,10 @@ public class Main {
                         if (queue[out].passangers[in].getFirstName() == null) {
                             writeFile.println("queue " + out + " row "+in+" is empty\n");
                         }else {
-                            writeFile.println("Name: " + queue[out].passangers[in].getFirstName() + " " + queue[out].passangers[in].getSecondName() + ", Vehicle number: ");
-                            writeFile.println("Vehicle number: " + queue[out].passangers[in].getVehicleNum() + ", Number of liters: " + queue[out].passangers[in].getNumOfLiters() + "\n");
-
+                            writeFile.println(queue[out].passangers[in].getFirstName());
+                            writeFile.println( queue[out].passangers[in].getSecondName());
+                            writeFile.println(queue[out].passangers[in].getVehicleNum());
+                            writeFile.println(queue[out].passangers[in].getNumOfLiters()+ "\n");
                         }
                     }
                 }
@@ -537,13 +536,15 @@ public class Main {
                     writeFile.println("No customers are in the waiting list");
                 }
                 for (int count = 0; count < size; count++) {
-                    writeFile.println(count + ": " + waitingListFirstName.get(count) + " " + waitingListSecondName.get(count));
-                    writeFile.println("Vehicle number :" + waitingListVehicleNo.get(count) + ", Number of liters ordered :" + waitingListNumOfLiters.get(count));
+                    writeFile.println(waitingListFirstName.get(count));
+                    writeFile.println( waitingListSecondName.get(count));
+                    writeFile.println(waitingListVehicleNo.get(count));
+                    writeFile.println(waitingListNumOfLiters.get(count)+ "\n");
                 }
 
                 writeFile.close();
                 System.out.println("\ndata saved into file");
-            }
+
         }catch (IOException e){
             System.out.println("An error occurred.");
         }
